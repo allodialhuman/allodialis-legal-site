@@ -1,37 +1,12 @@
-'use client'
-
-import { useState } from 'react'
-
 interface ContactSectionProps {
   lang: string
 }
 
 export function ContactSection({ lang }: ContactSectionProps) {
-  const [showToast, setShowToast] = useState(false)
   const isEn = lang === 'en'
 
-  const copyEmailToClipboard = () => {
-    const emailText = 'allodialhumanrights@protonmail.com'
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(emailText).then(() => {
-        setShowToast(true)
-        setTimeout(() => setShowToast(false), 3000)
-      })
-    } else {
-      const tempInput = document.createElement('input')
-      tempInput.value = emailText
-      document.body.appendChild(tempInput)
-      tempInput.select()
-      document.execCommand('copy')
-      document.body.removeChild(tempInput)
-      setShowToast(true)
-      setTimeout(() => setShowToast(false), 3000)
-    }
-  }
-
   return (
-    <section id="kapcsolat" className="py-24 md:py-32 section-navy border-b border-gold/10">
+    <section id="kapcsolat" className="deferred-section py-24 md:py-32 section-navy border-b border-gold/10" data-motion-scope>
       <div className="site-container site-container--4xl">
         <div className="text-center max-w-2xl mx-auto mb-16 fade-up">
           <span className="eyebrow text-[11px] font-bold uppercase tracking-[0.25em] text-gold mb-4 font-mono-data">
@@ -98,9 +73,10 @@ export function ContactSection({ lang }: ContactSectionProps) {
                 allodialhumanrights@protonmail.com
               </a>
               <button
-                onClick={copyEmailToClipboard}
+                type="button"
                 aria-label={isEn ? "Copy email address" : "Email cím másolása"}
                 className="btn-sovereign btn-outline px-4 py-2 text-[10px] font-bold text-gold uppercase tracking-wider rounded-sm font-mono-data"
+                data-copy-email="allodialhumanrights@protonmail.com"
               >
                 {isEn ? 'Copy' : 'Másolás'}
               </button>
@@ -108,7 +84,9 @@ export function ContactSection({ lang }: ContactSectionProps) {
             {/* Toast */}
             <div
               id="copy-toast"
-              className={`text-xs text-emerald-300 bg-emerald-900/30 border border-emerald-500/30 py-2 px-4 rounded-sm inline-block max-w-sm mx-auto transition-opacity duration-300 ${showToast ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+              className="text-xs text-emerald-300 bg-emerald-900/30 border border-emerald-500/30 py-2 px-4 rounded-sm inline-block max-w-sm mx-auto transition-opacity duration-300 opacity-0 pointer-events-none"
+              role="status"
+              aria-live="polite"
             >
               {isEn ? '✓ Email address copied to the clipboard.' : '✓ Email cím sikeresen a vágólapra másolva!'}
             </div>

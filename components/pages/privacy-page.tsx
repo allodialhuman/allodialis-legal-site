@@ -1,26 +1,8 @@
-import { cookies } from 'next/headers'
-import { ScrollProgress } from '@/components/scroll-progress'
-import { FadeUpObserver } from '@/components/fade-up-observer'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
-import type { Metadata } from 'next'
+import type { Locale } from '@/lib/i18n'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const cookieStore = await cookies()
-  const lang = cookieStore.get('lang')?.value || 'hu'
-
-  return {
-    title: lang === 'en' ? 'Privacy Notice — Allodial Civil Rights Association' : 'Adatvédelmi Tájékoztató — Allódiális Polgárjogi Társaság',
-    description: lang === 'en'
-      ? 'Privacy and data processing policy of the Allodial Civil Rights Association. Learn about our data processing rules, purposes, and your rights.'
-      : 'Az Allodiális Polgárjogi Társaság adatvédelmi és adatkezelési tájékoztatója. Ismerje meg az adatkezelési irányelveinket, céljait és az Önt megillető jogokat.',
-  }
-}
-
-export default async function PrivacyPolicyPage() {
-  const cookieStore = await cookies()
-  const lang = cookieStore.get('lang')?.value || 'hu'
-
+export function PrivacyPageContent({ lang }: { lang: Locale }) {
   const isEn = lang === 'en'
 
   const definitions = [
@@ -123,18 +105,12 @@ export default async function PrivacyPolicyPage() {
 
   return (
     <>
-      {/* Scroll progress */}
-      <ScrollProgress />
-
       {/* NAVBAR */}
-      <SiteHeader />
-
-      {/* Fade-up IntersectionObserver */}
-      <FadeUpObserver />
+      <SiteHeader lang={lang} route="privacy" />
 
       <main className="w-full min-w-0 overflow-x-clip pt-24 bg-obsidian text-ivory">
         {/* Hero Banner */}
-        <section className="relative py-20 md:py-28 overflow-hidden section-obsidian border-b border-gold/10">
+        <section className="page-hero motion-active relative py-20 md:py-28 overflow-hidden section-obsidian border-b border-gold/10" data-motion-scope>
           {/* Gold dot texture */}
           <div className="absolute inset-0 gold-dots opacity-[0.02] pointer-events-none" />
           <div className="absolute inset-0 gold-grid opacity-30 pointer-events-none" />
@@ -164,13 +140,13 @@ export default async function PrivacyPolicyPage() {
             </div>
 
             <p className="fade-up text-cream/70 text-sm sm:text-base font-mono-data tracking-wide uppercase">
-              {isEn ? 'ALLODIAL CIVIL RIGHTS ASSOCIATION' : 'ALLÓDIÁLIS POLGÁRJOGI TÁRSASÁG'}
+              {isEn ? 'ALLODIAL CIVIL RIGHTS SOCIETY' : 'ALLODIÁLIS POLGÁRJOGI TÁRSASÁG'}
             </p>
           </div>
         </section>
 
         {/* Content Section */}
-        <section className="py-16 md:py-24 relative">
+        <section className="deferred-section py-16 md:py-24 relative" data-motion-scope>
           {/* Subtle floating background glows */}
           <div
             className="absolute top-1/4 left-10 w-[400px] h-[400px] rounded-full pointer-events-none opacity-40"
@@ -196,7 +172,7 @@ export default async function PrivacyPolicyPage() {
                 <p>
                   {isEn ? (
                     <>
-                      The <strong>Allodial Civil Rights Association</strong> (hereinafter: Controller or Association) is an organization performing human rights advocacy and protection. The Association is committed to protecting the personal data of its clients, website visitors, supporters, and partners, and considers the respect for the data subjects' right to information self-determination as highly important.
+                      The <strong>Allodial Civil Rights Society</strong> (hereinafter: Controller or Association) is an organization performing human rights advocacy and protection. The Association is committed to protecting the personal data of its clients, website visitors, supporters, and partners, and considers the respect for the data subjects&apos; right to information self-determination as highly important.
                     </>
                   ) : (
                     <>
@@ -279,7 +255,7 @@ export default async function PrivacyPolicyPage() {
                   <tbody className="divide-y divide-gold/10 font-light text-cream/80">
                     <tr className="hover:bg-gold/5 transition-colors duration-200">
                       <td className="p-4 font-medium text-ivory">{isEn ? 'Name of Controller' : 'Adatkezelő neve'}</td>
-                      <td className="p-4">{isEn ? 'Allodial Civil Rights Association' : 'Allodiális Polgárjogi Társaság'}</td>
+                      <td className="p-4">{isEn ? 'Allodial Civil Rights Society' : 'Allodiális Polgárjogi Társaság'}</td>
                     </tr>
                     <tr className="hover:bg-gold/5 transition-colors duration-200">
                       <td className="p-4 font-medium text-ivory">{isEn ? 'Representative' : 'Képviselő'}</td>
@@ -776,7 +752,7 @@ export default async function PrivacyPolicyPage() {
               <div className="absolute inset-0 bg-radial-gradient(circle, rgba(201,167,94,0.03) 0%, transparent 70%) pointer-events-none" />
 
               <p className="text-gold-light/90 font-mono-data text-xs uppercase tracking-widest">
-                {isEn ? 'Allodial Civil Rights Association' : 'Allódiális Polgárjogi Társaság'}
+                {isEn ? 'Allodial Civil Rights Society' : 'Allodiális Polgárjogi Társaság'}
               </p>
               <p className="text-cream/90 font-serif-display text-base tracking-wide">
                 {isEn ? 'Represented by: ' : 'Képviseli: '}
@@ -788,7 +764,7 @@ export default async function PrivacyPolicyPage() {
         </section>
       </main>
 
-      <SiteFooter />
+      <SiteFooter lang={lang} />
     </>
   )
 }

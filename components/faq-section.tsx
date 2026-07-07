@@ -1,6 +1,3 @@
-'use client'
-
-import { useState } from 'react'
 import type { ReactNode } from 'react'
 
 type FaqItem = {
@@ -44,19 +41,6 @@ const getFaqItems = (isEn: boolean): FaqItem[] => [
           "The preliminary review of enquiries and basic information are provided within the Society's available resources. If the case requires further legal representation or expert work, the terms must be agreed separately with the relevant professional."
         ) : (
           "A megkeresések előzetes áttekintése és az alapvető tájékoztatás a társaság lehetőségei szerint történik. Amennyiben az ügy további jogi képviseletet vagy szakértői munkát igényel, annak feltételeiről külön kell egyeztetni az érintett szakemberrel."
-        )}
-      </div>
-    ),
-  },
-  {
-    question: isEn ? 'Is it free to request help?' : 'Ingyenes a segítségkérés?',
-    delay: '0.08s',
-    answer: (
-      <div className="py-5 font-sans font-light">
-        {isEn ? (
-          "The preliminary review of enquiries and basic information are provided within the association's available resources. If the case requires further legal representation or expert work, the terms must be agreed separately with the relevant professional."
-        ) : (
-          "A megkeresések előzetes áttekintése és az alapvető tájékoztatás az egyesület lehetőségei szerint történik. Amennyiben az ügy további jogi képviseletet vagy szakértői munkát igényel, annak feltételeiről külön kell egyeztetni az érintett szakemberrel."
         )}
       </div>
     ),
@@ -181,12 +165,11 @@ interface FaqSectionProps {
 }
 
 export function FaqSection({ lang }: FaqSectionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
   const isEn = lang === 'en'
   const faqItems = getFaqItems(isEn)
 
   return (
-    <section className="py-24 md:py-32 section-obsidian border-b border-gold/10">
+    <section id="gyik" className="deferred-section py-24 md:py-32 section-obsidian border-b border-gold/10" data-motion-scope>
       <div className="site-container site-container--3xl">
         <div className="text-center max-w-2xl mx-auto mb-16 fade-up">
           <span className="eyebrow text-[11px] font-bold uppercase tracking-[0.25em] text-gold mb-4 font-mono-data">
@@ -200,27 +183,33 @@ export function FaqSection({ lang }: FaqSectionProps) {
           </div>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-3" data-faq>
           {faqItems.map((item, i) => {
-            const isOpen = openIndex === i
+            const answerId = `faq-answer-${lang}-${i}`
             return (
               <div
                 key={i}
                 className="fade-up premium-card rounded-sm overflow-hidden"
                 style={item.delay ? { transitionDelay: item.delay } : undefined}
+                data-faq-item
               >
                 <button
+                  type="button"
                   className="faq-toggle w-full px-6 py-5 hover:bg-gold/[0.04] transition-colors text-left flex justify-between items-center text-ivory font-semibold text-sm md:text-base font-serif-display"
-                  aria-expanded={isOpen}
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                  aria-expanded="false"
+                  aria-controls={answerId}
+                  data-faq-toggle
                 >
                   <span>{item.question}</span>
-                  <span className={`faq-arrow text-gold font-bold text-sm select-none ml-4 shrink-0 ${isOpen ? 'rotated' : ''}`}>
+                  <span className="faq-arrow text-gold font-bold text-sm select-none ml-4 shrink-0">
                     ▼
                   </span>
                 </button>
                 <div
-                  className={`faq-answer px-6 text-xs md:text-sm text-cream/80 border-t border-gold/10 leading-relaxed ${isOpen ? 'open' : ''}`}
+                  id={answerId}
+                  className="faq-answer px-6 text-xs md:text-sm text-cream/80 border-t border-gold/10 leading-relaxed"
+                  aria-hidden="true"
+                  data-faq-answer
                 >
                   {item.answer}
                 </div>

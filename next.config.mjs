@@ -3,8 +3,33 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  images: {
-    unoptimized: true,
+  poweredByHeader: false,
+  async headers() {
+    return [
+      {
+        source: '/noise-texture-v1.webp',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ]
+  },
+  async redirects() {
+    return [
+      {
+        source: '/en/a-tarsasagrol',
+        destination: '/en/about',
+        permanent: true,
+      },
+      {
+        source: '/en/adatvedelmi-tajekoztato',
+        destination: '/en/privacy-policy',
+        permanent: true,
+      },
+    ]
   },
 }
 

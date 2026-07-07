@@ -6,7 +6,7 @@ export function JoinSection({ lang }: JoinSectionProps) {
   const isEn = lang === 'en'
 
   return (
-    <section className="py-24 md:py-32 section-obsidian border-b border-gold/10">
+    <section className="deferred-section py-24 md:py-32 section-obsidian border-b border-gold/10" data-motion-scope>
       <div className="site-container site-container--5xl">
         <div className="text-center max-w-2xl mx-auto mb-16 fade-up">
           <span className="eyebrow text-[11px] font-bold uppercase tracking-[0.25em] text-gold mb-4 font-mono-data">

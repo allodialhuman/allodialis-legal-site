@@ -1,6 +1,3 @@
-import { cookies } from 'next/headers'
-import { ScrollProgress } from '@/components/scroll-progress'
-import { FadeUpObserver } from '@/components/fade-up-observer'
 import { SiteHeader } from '@/components/site-header'
 import { HeroSection } from '@/components/hero-section'
 import { MissionSection } from '@/components/mission-section'
@@ -18,21 +15,13 @@ import { FaqSection } from '@/components/faq-section'
 import { ContactSection } from '@/components/contact-section'
 import { ClosingSection } from '@/components/closing-section'
 import { SiteFooter } from '@/components/site-footer'
+import type { Locale } from '@/lib/i18n'
 
-export default async function Page() {
-  const cookieStore = await cookies()
-  const lang = cookieStore.get('lang')?.value || 'hu'
-
+export function HomePageContent({ lang }: { lang: Locale }) {
   return (
     <>
-      {/* Scroll progress */}
-      <ScrollProgress />
-
       {/* A. NAVBAR */}
-      <SiteHeader />
-
-      {/* Fade-up IntersectionObserver */}
-      <FadeUpObserver />
+      <SiteHeader lang={lang} route="home" />
 
       <main className="w-full min-w-0 overflow-x-clip">
         {/* B. HERO */}
@@ -82,7 +71,7 @@ export default async function Page() {
       </main>
 
       {/* P. FOOTER */}
-      <SiteFooter />
+      <SiteFooter lang={lang} />
     </>
   )
 }

@@ -6,7 +6,7 @@ export function TeamSection({ lang }: TeamSectionProps) {
   const isEn = lang === 'en'
 
   return (
-    <section id="kik-vagyunk" className="py-24 md:py-32 section-navy border-b border-gold/10">
+    <section id="kik-vagyunk" className="deferred-section py-24 md:py-32 section-navy border-b border-gold/10" data-motion-scope>
       <div className="site-container site-container--5xl">
         <div className="text-center max-w-2xl mx-auto mb-16 fade-up">
           <span className="eyebrow text-[11px] font-bold uppercase tracking-[0.25em] text-gold mb-4 font-mono-data">
@@ -17,8 +17,8 @@ export function TeamSection({ lang }: TeamSectionProps) {
           </h2>
           <p className="text-cream/60 text-sm md:text-base mt-4 font-light font-sans">
             {isEn 
-              ? 'Dedicated founders, members of the leadership team and professional contributors take part in the work of Allódiális Polgárjogi Társaság.'
-              : 'Az Allódiális Polgárjogi Társaság munkájában elkötelezett alapítók, vezetőségi tagok és szakmai közreműködők vesznek részt.'
+              ? 'Dedicated founders, members of the leadership team and professional contributors take part in the work of Allodiális Polgárjogi Társaság.'
+              : 'Az Allodiális Polgárjogi Társaság munkájában elkötelezett alapítók, vezetőségi tagok és szakmai közreműködők vesznek részt.'
             }
           </p>
           <div className="ornament-divider mt-7">

@@ -6,7 +6,7 @@ export function DisclaimerSection({ lang }: DisclaimerSectionProps) {
   const isEn = lang === 'en'
 
   return (
-    <section className="py-20 md:py-28 section-navy border-b border-gold/10">
+    <section className="deferred-section py-20 md:py-28 section-navy border-b border-gold/10" data-motion-scope>
       <div className="site-container site-container--5xl">
         <div className="fade-up premium-card ornate-frame p-8 md:p-14 rounded-sm">
           <span className="corner-tr" />
@@ -20,9 +20,9 @@ export function DisclaimerSection({ lang }: DisclaimerSectionProps) {
 
           <p className="text-center text-cream/80 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-10 italic font-light font-sans">
             {isEn ? (
-              "Allódiális Polgárjogi Társaság is not a public authority, a court or a law firm. We cannot promise a guaranteed outcome, nor do we automatically provide legal representation in every case submitted to us."
+              "Allodiális Polgárjogi Társaság is not a public authority, a court or a law firm. We cannot promise a guaranteed outcome, nor do we automatically provide legal representation in every case submitted to us."
             ) : (
-              "Az Allódiális Polgárjogi Társaság nem hatóság, nem bíróság és nem ügyvédi iroda. Nem ígérhetünk garantált kimenetelt, és nem biztosítunk automatikusan jogi képviseletet minden hozzánk beérkező ügyben."
+              "Az Allodiális Polgárjogi Társaság nem hatóság, nem bíróság és nem ügyvédi iroda. Nem ígérhetünk garantált kimenetelt, és nem biztosítunk automatikusan jogi képviseletet minden hozzánk beérkező ügyben."
             )}
           </p>
 

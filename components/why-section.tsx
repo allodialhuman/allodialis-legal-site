@@ -29,7 +29,7 @@ export function WhySection({ lang }: WhySectionProps) {
   const rightsItems = isEn ? rightsItemsEn : rightsItemsHu
 
   return (
-    <section id="miert" className="py-24 md:py-32 section-obsidian border-b border-gold/10">
+    <section id="miert" className="deferred-section py-24 md:py-32 section-obsidian border-b border-gold/10" data-motion-scope>
       <div className="site-container site-container--5xl">
         <div className="text-center max-w-2xl mx-auto mb-16 fade-up">
           <span className="eyebrow text-[11px] font-bold uppercase tracking-[0.25em] text-gold mb-4 font-mono-data">
@@ -81,8 +81,8 @@ export function WhySection({ lang }: WhySectionProps) {
 
         <p className="fade-up text-cream/80 text-base leading-relaxed text-center max-w-3xl mx-auto mt-12 font-light font-sans">
           {isEn
-            ? "Allódiális Polgárjogi Társaság aims to ensure that people are not left alone when they need information, a case assessment, possible avenues for protecting their rights or a point of contact for professional help."
-            : "Az Allódiális Polgárjogi Társaság célja, hogy az érintettek ne maradjanak magukra, amikor tájékozódásra, ügyértékelésre, jogvédelmi irányokra vagy szakmai segítséghez vezető kapcsolódási pontra van szükségük."
+            ? "Allodiális Polgárjogi Társaság aims to ensure that people are not left alone when they need information, a case assessment, possible avenues for protecting their rights or a point of contact for professional help."
+            : "Az Allodiális Polgárjogi Társaság célja, hogy az érintettek ne maradjanak magukra, amikor tájékozódásra, ügyértékelésre, jogvédelmi irányokra vagy szakmai segítséghez vezető kapcsolódási pontra van szükségük."
           }
         </p>
       </div>

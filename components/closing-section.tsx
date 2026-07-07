@@ -6,7 +6,7 @@ export function ClosingSection({ lang }: ClosingSectionProps) {
   const isEn = lang === 'en'
 
   return (
-    <section className="py-24 md:py-36 section-obsidian text-center border-b border-gold/10 relative overflow-hidden">
+    <section className="deferred-section py-24 md:py-36 section-obsidian text-center border-b border-gold/10 relative overflow-hidden" data-motion-scope>
       <div className="absolute inset-0 gold-dots opacity-[0.02] pointer-events-none" />
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full pointer-events-none"
@@ -36,8 +36,8 @@ export function ClosingSection({ lang }: ClosingSectionProps) {
 
         <p className="fade-up text-cream/80 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-light font-sans">
           {isEn
-            ? "Allódiális Polgárjogi Társaság works to ensure that, in such situations, people have somewhere to turn, someone to connect with and professional support for the protection of their fundamental rights."
-            : "Az Allódiális Polgárjogi Társaság azon dolgozik, hogy a nehéz helyzetbe került embereknek legyen hová fordulniuk, kapjanak megfelelő iránymutatást és szakmai hátteret alapvető jogaik védelmében."
+            ? "Allodiális Polgárjogi Társaság works to ensure that, in such situations, people have somewhere to turn, someone to connect with and professional support for the protection of their fundamental rights."
+            : "Az Allodiális Polgárjogi Társaság azon dolgozik, hogy a nehéz helyzetbe került embereknek legyen hová fordulniuk, kapjanak megfelelő iránymutatást és szakmai hátteret alapvető jogaik védelmében."
           }
         </p>
 

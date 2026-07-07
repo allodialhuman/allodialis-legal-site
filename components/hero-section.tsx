@@ -8,7 +8,8 @@ export function HeroSection({ lang }: HeroSectionProps) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center items-center section-obsidian overflow-hidden"
+      className="motion-active relative min-h-screen flex flex-col justify-center items-center section-obsidian overflow-hidden"
+      data-motion-scope
     >
       {/* Gold dot texture */}
       <div className="absolute inset-0 gold-dots opacity-[0.03] pointer-events-none" />
@@ -53,7 +54,7 @@ export function HeroSection({ lang }: HeroSectionProps) {
         {/* Main heading */}
         <h1
           className="fade-up font-serif-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] font-bold text-ivory leading-[1.18] tracking-tight"
-          style={{ transitionDelay: '0.08s', textShadow: '0 2px 40px rgba(0,0,0,0.5)' }}
+          style={{ animationDelay: '0.08s', textShadow: '0 2px 40px rgba(0,0,0,0.5)' }}
         >
           {isEn ? (
             <>
@@ -69,25 +70,25 @@ export function HeroSection({ lang }: HeroSectionProps) {
         </h1>
 
         {/* Ornamental divider */}
-        <div className="fade-up ornament-divider" style={{ transitionDelay: '0.16s' }}>
+        <div className="fade-up ornament-divider" style={{ animationDelay: '0.16s' }}>
           <span className="text-gold text-sm">✦</span>
         </div>
 
         {/* Subtitle */}
         <p
           className="fade-up max-w-2xl mx-auto text-cream/75 text-base md:text-lg font-light leading-relaxed"
-          style={{ transitionDelay: '0.24s' }}
+          style={{ animationDelay: '0.24s' }}
         >
           {isEn 
-            ? "Allódiális Polgárjogi Társaság is a registered rights protection association supporting families, parents, children and people whose rights have been violated."
-            : "Az Allódiális Polgárjogi Társaság bejegyzett jogvédő egyesület, amely családok, szülők, gyermekek és jogsérelmet elszenvedett emberek támogatásán dolgozik."
+            ? "Allodiális Polgárjogi Társaság is a registered rights protection association supporting families, parents, children and people whose rights have been violated."
+            : "Az Allodiális Polgárjogi Társaság bejegyzett jogvédő egyesület, amely családok, szülők, gyermekek és jogsérelmet elszenvedett emberek támogatásán dolgozik."
           }
         </p>
 
         {/* CTA buttons */}
         <div
           className="fade-up flex flex-col sm:flex-row justify-center items-center gap-5 pt-4"
-          style={{ transitionDelay: '0.32s' }}
+          style={{ animationDelay: '0.32s' }}
         >
           <a
             href="#kapcsolat"

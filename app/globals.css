@@ -14,7 +14,7 @@
   --color-cream-border: #ebe5d9;
 
   --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-serif: var(--font-cormorant), var(--font-playfair), Georgia, serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
   --font-mono: var(--font-jetbrains), monospace;
 }
 
@@ -50,6 +50,10 @@ footer {
 }
 
 section[id] {
+  scroll-margin-top: 5rem;
+}
+
+#velemenyek {
   scroll-margin-top: 5rem;
 }
 
@@ -133,11 +137,13 @@ section[id] {
   top: 0;
   left: 0;
   height: 2px;
-  width: 0%;
+  width: 100%;
   background: linear-gradient(90deg, #a3803b, #e8cd8f, #c9a75e);
   z-index: 100;
   box-shadow: 0 0 12px rgba(201, 167, 94, 0.6);
-  transition: width 0.1s linear;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
 }
 
 /* Noise overlay */
@@ -151,7 +157,8 @@ section[id] {
   pointer-events: none;
   z-index: 9999;
   opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-image: url('/noise-texture-v1.webp');
+  background-size: 128px 128px;
 }
 
 /* Gold dot pattern */
@@ -299,12 +306,46 @@ section[id] {
   opacity: 0;
   transform: translateY(34px);
   transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: auto;
+}
+
+.fade-up.is-animating {
   will-change: opacity, transform;
 }
 
 .fade-up.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@keyframes hero-reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(34px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#hero .fade-up,
+.page-hero .fade-up {
+  animation: hero-reveal-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: none;
+  will-change: opacity, transform;
+}
+
+.page-hero .site-container > .fade-up:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.page-hero .site-container > .fade-up:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.page-hero .site-container > .fade-up:nth-child(4) {
+  animation-delay: 0.24s;
 }
 
 /* ── Premium button ── */
@@ -539,6 +580,57 @@ section[id] {
   transform: translateX(0);
 }
 
+body.menu-open {
+  overflow: hidden;
+}
+
+.copy-toast-visible {
+  opacity: 1;
+}
+
+/* Skip layout and paint work for content that is still far below the viewport. */
+.deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 960px;
+}
+
+.testimonial-loader-sentinel {
+  height: 1px;
+  margin-bottom: -1px;
+}
+
+.testimonial-loader-sentinel--active {
+  height: auto;
+  margin-bottom: 0;
+}
+
+.testimonial-shell:has(.testimonial-loader-sentinel--active) [data-testimonial-static] {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .deferred-section {
+    contain-intrinsic-size: auto 1120px;
+  }
+}
+
+/* Infinite decoration runs only while its section is visible or close to view. */
+[data-motion-scope] .gold-gradient-text,
+[data-motion-scope] .pulse-dot,
+[data-motion-scope] .bounce-arrow,
+[data-motion-scope] .glow-drift,
+[data-motion-scope] .glow-drift-2 {
+  animation-play-state: paused;
+}
+
+[data-motion-scope].motion-active .gold-gradient-text,
+[data-motion-scope].motion-active .pulse-dot,
+[data-motion-scope].motion-active .bounce-arrow,
+[data-motion-scope].motion-active .glow-drift,
+[data-motion-scope].motion-active .glow-drift-2 {
+  animation-play-state: running;
+}
+
 /* Section transitions — soft gradients between blocks */
 .section-obsidian {
   background: radial-gradient(ellipse 90% 60% at 50% 0%, rgba(201, 167, 94, 0.035) 0%, transparent 60%), #0a0a10;
@@ -593,6 +685,21 @@ section[id] {
   -webkit-line-clamp: 8;
 }
 
+/* Testimonials use a calm, solid surface and the site's primary sans-serif for readability. */
+.testimonial-card {
+  background: #0d1726;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.testimonial-card::before {
+  display: none;
+}
+
+.testimonial-card:hover {
+  background: #0d1726;
+}
+
 .testimonial-control {
   width: 44px;
   height: 44px;
@@ -632,6 +739,28 @@ section[id] {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fade-up,
+  #hero .fade-up,
+  .page-hero .fade-up {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+    will-change: auto;
+  }
+
+  .gold-gradient-text,
+  .pulse-dot,
+  .bounce-arrow,
+  .glow-drift,
+  .glow-drift-2 {
+    animation: none;
+  }
+
   .testimonial-control,
   .testimonial-control:hover:not(:disabled) {
     transform: none;

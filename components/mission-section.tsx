@@ -6,7 +6,7 @@ export function MissionSection({ lang }: MissionSectionProps) {
   const isEn = lang === 'en'
 
   return (
-    <section className="py-20 md:py-28 section-navy border-b border-gold/10">
+    <section className="py-20 md:py-28 section-navy border-b border-gold/10" data-motion-scope>
       <div className="site-container site-container--5xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div className="fade-up space-y-6">

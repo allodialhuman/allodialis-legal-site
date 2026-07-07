@@ -6,7 +6,7 @@ export function SupportSection({ lang }: SupportSectionProps) {
   const isEn = lang === 'en'
 
   return (
-    <section id="tamogatas" className="py-24 md:py-32 section-navy border-b border-gold/10 relative overflow-hidden">
+    <section id="tamogatas" className="deferred-section py-24 md:py-32 section-navy border-b border-gold/10 relative overflow-hidden" data-motion-scope>
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(ellipse, rgba(201,167,94,0.06) 0%, transparent 65%)' }}
@@ -29,9 +29,9 @@ export function SupportSection({ lang }: SupportSectionProps) {
           <span className="corner-bl" />
           <p className="text-cream/80 text-sm md:text-base leading-relaxed font-light text-center font-sans">
             {isEn ? (
-              "Rights protection work requires time, expertise, organisation and sustained work behind the scenes. Donations enable Allódiális Polgárjogi Társaság to provide information, case assessments, guidance on protecting rights and professional support to more affected families."
+              "Rights protection work requires time, expertise, organisation and sustained work behind the scenes. Donations enable Allodiális Polgárjogi Társaság to provide information, case assessments, guidance on protecting rights and professional support to more affected families."
             ) : (
-              "A jogvédelmi munka időt, szakértelmet, szervezést és folyamatos háttérmunkát igényel. A támogatások segítenek abban, hogy az Allódiális Polgárjogi Társaság több érintett családnak tudjon tájékoztatást, ügyértékelést, jogvédelmi irányt és szakmai hátteret biztosítani."
+              "A jogvédelmi munka időt, szakértelmet, szervezést és folyamatos háttérmunkát igényel. A támogatások segítenek abban, hogy az Allodiális Polgárjogi Társaság több érintett családnak tudjon tájékoztatást, ügyértékelést, jogvédelmi irányt és szakmai hátteret biztosítani."
             )}
           </p>
 

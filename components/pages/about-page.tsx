@@ -1,26 +1,9 @@
-import { cookies } from 'next/headers'
-import { ScrollProgress } from '@/components/scroll-progress'
-import { FadeUpObserver } from '@/components/fade-up-observer'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
-import type { Metadata } from 'next'
+import type { Locale } from '@/lib/i18n'
+import { getHomeSectionHref } from '@/lib/i18n'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const cookieStore = await cookies()
-  const lang = cookieStore.get('lang')?.value || 'hu'
-
-  return {
-    title: lang === 'en' ? 'About the Association — Allodial Civil Rights Association' : 'A Társaságról — Allódiális Polgárjogi Társaság',
-    description: lang === 'en'
-      ? 'The Allodial Civil Rights Association is a human rights defense organization. Learn about the guiding human rights and humanitarian conventions.'
-      : 'Az Allodiális Polgárjogi Társaság emberi jogi jogvédő tevékenységet ellátó szervezet. Ismerje meg az irányadó emberi jogi és humanitárius egyezményeket.',
-  }
-}
-
-export default async function AboutPage() {
-  const cookieStore = await cookies()
-  const lang = cookieStore.get('lang')?.value || 'hu'
-
+export function AboutPageContent({ lang }: { lang: Locale }) {
   const isEn = lang === 'en'
 
   const humanRightsDocs = [
@@ -86,18 +69,12 @@ export default async function AboutPage() {
 
   return (
     <>
-      {/* Scroll progress */}
-      <ScrollProgress />
-
       {/* NAVBAR */}
-      <SiteHeader />
-
-      {/* Fade-up IntersectionObserver */}
-      <FadeUpObserver />
+      <SiteHeader lang={lang} route="about" />
 
       <main className="w-full min-w-0 overflow-x-clip pt-24 bg-obsidian text-ivory">
         {/* Hero Banner */}
-        <section className="relative py-20 md:py-28 overflow-hidden section-obsidian border-b border-gold/10">
+        <section className="page-hero motion-active relative py-20 md:py-28 overflow-hidden section-obsidian border-b border-gold/10" data-motion-scope>
           {/* Gold dot texture */}
           <div className="absolute inset-0 gold-dots opacity-[0.02] pointer-events-none" />
           <div className="absolute inset-0 gold-grid opacity-30 pointer-events-none" />
@@ -127,13 +104,13 @@ export default async function AboutPage() {
             </div>
 
             <p className="fade-up text-cream/70 text-sm sm:text-base font-mono-data tracking-wide uppercase">
-              {isEn ? 'ALLODIAL CIVIL RIGHTS ASSOCIATION' : 'ALLÓDIÁLIS POLGÁRJOGI TÁRSASÁG'}
+              {isEn ? 'ALLODIAL CIVIL RIGHTS SOCIETY' : 'ALLODIÁLIS POLGÁRJOGI TÁRSASÁG'}
             </p>
           </div>
         </section>
 
         {/* Content Section */}
-        <section className="py-16 md:py-24 relative">
+        <section className="deferred-section py-16 md:py-24 relative" data-motion-scope>
           {/* Subtle floating background glows */}
           <div
             className="absolute top-1/4 left-10 w-[400px] h-[400px] rounded-full pointer-events-none opacity-40"
@@ -155,7 +132,7 @@ export default async function AboutPage() {
                 <p>
                   {isEn ? (
                     <>
-                      The <strong>Allodial Civil Rights Association</strong> is an organization performing human rights advocacy and protection.
+                      The <strong>Allodial Civil Rights Society</strong> is an organization performing human rights advocacy and protection.
                     </>
                   ) : (
                     <>
@@ -273,7 +250,7 @@ export default async function AboutPage() {
 
               <div className="pt-4">
                 <a
-                  href="/#kapcsolat"
+                  href={getHomeSectionHref(lang, 'kapcsolat')}
                   className="btn-sovereign btn-gold inline-block px-8 py-3.5 text-obsidian font-bold uppercase tracking-[0.18em] text-xs rounded-sm"
                 >
                   {isEn ? 'Contact Us' : 'Kapcsolatfelvétel'}
@@ -285,7 +262,7 @@ export default async function AboutPage() {
         </section>
       </main>
 
-      <SiteFooter />
+      <SiteFooter lang={lang} />
     </>
   )
 }

@@ -6,7 +6,7 @@ export function DirectiveSection({ lang }: DirectiveSectionProps) {
   const isEn = lang === 'en'
 
   return (
-    <section className="py-24 md:py-32 section-obsidian relative overflow-hidden border-b border-gold/10">
+    <section className="deferred-section py-24 md:py-32 section-obsidian relative overflow-hidden border-b border-gold/10" data-motion-scope>
       <div className="absolute inset-0 gold-dots opacity-[0.02] pointer-events-none" />
       <div
         className="absolute top-1/3 left-0 w-[400px] h-[400px] rounded-full pointer-events-none"
@@ -33,12 +33,12 @@ export function DirectiveSection({ lang }: DirectiveSectionProps) {
             <p>
               {isEn ? (
                 <>
-                  One of the principal aims of Allódiális Polgárjogi Társaság is the{' '}
+                  One of the principal aims of Allodiális Polgárjogi Társaság is the{' '}
                   <strong className="gold-gradient-text font-semibold">legal protection of children and parents</strong>.
                 </>
               ) : (
                 <>
-                  Az Allódiális Polgárjogi Társaság egyik kiemelt feladata és célkitűzése a{' '}
+                  Az Allodiális Polgárjogi Társaság egyik kiemelt feladata és célkitűzése a{' '}
                   <strong className="gold-gradient-text font-semibold">gyermekek és a szülők jogi védelme</strong>.
                 </>
               )}
